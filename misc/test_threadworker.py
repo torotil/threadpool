@@ -9,7 +9,7 @@ rmode = 'rb'
 def getmd5(filename, data=None):
     try:
         fp = open(filename, rmode)
-    except IOError, exc:
+    except IOError as exc:
         return (exc, '%s: Can\'t open: %s\n' % (filename, exc))
     m = md5.new()
     try:
@@ -19,7 +19,7 @@ def getmd5(filename, data=None):
             ## if not data:
                 ## break
         m.update(fp.read())
-    except IOError, exc:
+    except IOError as exc:
         return (exc, '%s: I/O error: %s\n' % (filename, exc))
     else:
         fp.close()
@@ -36,7 +36,7 @@ def getsha(dummy, data):
     return m.hexdigest()
 
 def print_result(request, result):
-    print '"%s", %s' % (os.path.basename(request.args[0]), result)
+    print('"%s", %s' % (os.path.basename(request.args[0]), result))
 
 if __name__ == '__main__':
     import os, sys
